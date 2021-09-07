@@ -4,10 +4,15 @@ const colors = document.getElementsByClassName("jsColor");
 const range = document.getElementById("jsRange");
 const mode = document.getElementById("jsMode");
 
-canvas.width = document.getElementsByClassName("canvas")[0].offsetWidth;
-canvas.height = document.getElementsByClassName("canvas")[0].offsetHeight;
+const INIITIAL_COLOR = "#000000";
+const CANVAS_WIDTH = document.getElementsByClassName("canvas")[0].offsetWidth;
+const CANVAS_HEIGHT = document.getElementsByClassName("canvas")[0].offsetHeight;
 
-ctx.strokeStyle = "#000000";
+canvas.width = CANVAS_WIDTH;
+canvas.height = CANVAS_HEIGHT;
+
+ctx.strokeStyle = INIITIAL_COLOR;
+ctx.fillStyle = INIITIAL_COLOR;
 ctx.lineWidth = 2.5;
 
 let painting = false;
@@ -38,6 +43,7 @@ function onMouseDown(event) {
 function handleColor(event) {
   const color = event.target.style.backgroundColor;
   ctx.strokeStyle = color;
+  ctx.fillStyle = color;
 }
 
 function handleRangeChange(event) {
@@ -45,7 +51,7 @@ function handleRangeChange(event) {
   ctx.lineWidth = strokeSize;
 }
 function handleModeClick() {
-  if (filling === true) {
+  if (filling) {
     filling = false;
     mode.innerText = "채우기";
   } else {
@@ -53,11 +59,18 @@ function handleModeClick() {
     mode.innerText = "그리기";
   }
 }
+function handleCanvasClick() {
+  if (filling) {
+    ctx.fillRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+  }
+}
+
 if (canvas) {
   canvas.addEventListener("mousemove", onMouseMove);
   canvas.addEventListener("mousedown", startPainting);
   canvas.addEventListener("mouseup", stopPainting);
   canvas.addEventListener("mouseleave", stopPainting);
+  canvas.addEventListener("click", handleCanvasClick);
 }
 
 Array.from(colors).forEach((color) =>
