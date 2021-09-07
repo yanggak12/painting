@@ -18,6 +18,7 @@ body {
 
 .controls {
   margin-top: 80px;
+  text-align: center;
 }
 .controls .controls_colors {
   display: flex;
@@ -28,4 +29,29 @@ body {
   border-radius: 25px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(50, 50, 93, 0.11);
+}
+.controls .controls_btns {
+  margin-bottom: 30px;
+}
+.controls_btns button {
+  all: unset;
+  cursor: pointer;
+  background-color: #ffffff;
+  padding: 5px 0px;
+  width: 80px;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(50, 50, 93, 0.11);
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  columns: rgba(0, 0, 0, 0.8);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.controls_btns button:active {
+  transform: scale(0.98);
+}
+
+.controls .controls_range {
+  margin-bottom: 30px;
 }
